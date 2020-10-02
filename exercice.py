@@ -8,19 +8,61 @@ import itertools
 
 
 def get_even_keys(dictionary):
-	return {}
+	#Extraire les cles
+	even_keys = {k for k, v in dictionary.items() if k % 2 == 0}
+
+	#Extraire les cles paires
+	#if yeet.keys()%2:
+
+	return even_keys
 
 def join_dictionaries(dictionaries):
-	return {}
+	# result= {}
+	# for d in dictionaries:
+	# 	for key, value in d.items():
+	# 		result = (key, value)
+	# 		print(result)
+	# return result
+
+	#return {**dictionaries[0], dictionaries[1]} #seulement si on sait on a 2 items
+	return {key: value
+				for d in dictionaries
+					for key, value in d.items()}
 
 def dictionary_from_lists(keys, values):
-	return {}
+	# result= {}
+	# for i in range(min(len(keys), len(values))):
+	# 	result[keys[i]] = values[i]
+	# return result
 
-def get_greatest_values(dictionnary, num_values):
-	return []
+	# return{keys[i]: values[i] for i in range(min(len(keys), len(values)))}
+	return dict(zip(keys, values))
 
-def get_sum_values_from_key(dictionnaries, key):
-	return 0
+def get_greatest_values(dictionary, num_values):
+	# #Extraire les valeurs
+	# #values={v for k, v in dictionary.items()}
+	# values=dictionary.values()
+	# #Ordonner les valeurs a l'envers
+	# sorted_values = sorted(values, reverse=True)
+	# #Choisir les nym_values plus grands
+	# return list(sorted_values[0:num_values])
+	return list(sorted(dictionary.values(), reverse=True)[0:num_values]) #le list est optionel pcq ca retourne une liste de tte facon
+
+def get_sum_values_from_key(dictionaries, key):
+	#Extraire les valeurs assoicees a une cle
+	#Faire la somme des valeurs
+	# sum = 0
+	# for d in dictionaries:
+	# 	if key in d:
+	# 		sum += d[key]
+
+	# values = []
+	# for d in dictionaries:
+	# 	if key in d:
+	# 		values.append(d[key])
+	# return sum(values)
+
+	return sum([d[key] for d in dictionaries if key in d])
 
 
 if __name__ == "__main__":
@@ -87,3 +129,8 @@ if __name__ == "__main__":
 	print(get_sum_values_from_key([bro1, bro2, bro3], "problems"))
 	print(get_sum_values_from_key([bro1, bro2, bro3], "money"))
 	print()
+
+	#pratique de zip
+	a = ("a", "b", "c")
+	b = ("d", "e", "f")
+	c = ("g", "h", "i")
